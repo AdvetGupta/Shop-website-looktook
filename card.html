@@ -392,36 +392,6 @@
         </a>
     </div>
 
-    <!-- Save vCard to Contacts -->
-    <button class="save-btn" onclick="saveContact()">
-        📥 Save Card to Contacts (.vcf)
-    </button>
-
     <a href="index.html" class="card-home-link">← Visit Full Showroom Website</a>
-
-    <script>
-        function saveContact() {
-            const vcard = 
-`BEGIN:VCARD
-VERSION:3.0
-N:Gupta;Golden;;;
-FN:Look Took Jewellers (Golden Gupta)
-ORG:Look Took Jewellers
-TITLE:Master Jeweller & Founder
-TEL;TYPE=CELL,VOICE:+919424058434
-ADR;TYPE=WORK:;;Sarafa Bajar;Gogawan;Madhya Pradesh;451335;India
-NOTE:Look Took Jewellers - 100% BIS Hallmarked Gold & Diamond Jewellery since 2014.
-URL:https://maps.google.com/?q=Sarafa+Bajar,+Gogawan,+Shahpura,+Madhya+Pradesh+451335
-END:VCARD`;
-
-            const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8;' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.setAttribute('download', 'Look_Took_Jewellers.vcf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    </script>
 </body>
 </html>
