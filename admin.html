@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Look Took Jewellers | Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <style>
+        body {
+            background-color: var(--beige);
+            color: var(--black);
+            padding: 30px;
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-medium);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .admin-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--black);
+        }
+        .admin-header h1 span {
+            color: var(--gold-dark);
+        }
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 30px;
+        }
+        .admin-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-soft);
+        }
+        .admin-card h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 10px;
+        }
+        .admin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .admin-form label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+        }
+        .admin-form input,
+        .admin-form select,
+        .admin-form textarea {
+            padding: 10px 14px;
+            border: 1px solid var(--border-medium);
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+        }
+        .admin-form input:focus,
+        .admin-form select:focus,
+        .admin-form textarea:focus {
+            border-color: var(--gold);
+        }
+        .admin-btn {
+            background: var(--gold-dark);
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .admin-btn:hover {
+            background: var(--gold);
+        }
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .product-table th, .product-table td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.85rem;
+        }
+        .product-table th {
+            font-family: 'Cinzel', serif;
+            background: rgba(212, 175, 55, 0.08);
+            color: var(--black);
+        }
+        .product-table img {
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .action-del {
+            color: #d9534f;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-weight: 600;
+        }
+        @media (max-width: 900px) {
+            .admin-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-header">
+        <h1>Look Took <span>Dashboard</span></h1>
+        <a href="index.html" style="font-family:'Cinzel',serif; font-size: 0.85rem; color: var(--gold-dark);">← Back to Website</a>
+    </div>
+
+    <div class="admin-grid">
+        <div class="admin-card">
+            <h2>Add New Piece</h2>
+            <form class="admin-form" id="addProductForm" onsubmit="return false;">
+                <div>
+                    <label>Product Name</label>
+                    <input type="text" id="pName" placeholder="e.g. Traditional Kundan Set" required>
+                </div>
+                <div>
+                    <label>Category</label>
+                    <select id="pCat">
+                        <option>Bangles</option>
+                        <option>Bracelets</option>
+                        <option>Necklaces</option>
+                        <option>Rings</option>
+                        <option>Earrings</option>
+                        <option>Bridal Collection</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Gold Purity / Material</label>
+                    <input type="text" id="pMaterial" placeholder="e.g. 22K Hallmarked Gold" required>
+                </div>
+                <div>
+                    <label>Image File Path</label>
+                    <input type="text" id="pImg" placeholder="assets/images/..." value="assets/images/luxury_necklace.png">
+                </div>
+                <button type="button" class="admin-btn" id="saveProductBtn">Save to Catalogue</button>
+            </form>
+        </div>
+
+        <div class="admin-card">
+            <h2>Live Catalogue Preview (<span id="count">6</span> items)</h2>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Purity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="productRows">
+                    <tr>
+                        <td><img src="assets/images/luxury_bangle.png" alt=""></td>
+                        <td>Royal Heritage Bangle</td>
+                        <td>Bangles</td>
+                        <td>22K Gold</td>
+                        <td><button class="action-del" onclick="this.closest('tr').remove(); updateCount();">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/images/luxury_necklace.png" alt=""></td>
+                        <td>Celestial Necklace</td>
+                        <td>Necklaces</td>
+                        <td>Diamond & Gold</td>
+                        <td><button class="action-del" onclick="this.closest('tr').remove(); updateCount();">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/images/luxury_ring.png" alt=""></td>
+                        <td>Eternal Promise Ring</td>
+                        <td>Rings</td>
+                        <td>Platinum & Diamond</td>
+                        <td><button class="action-del" onclick="this.closest('tr').remove(); updateCount();">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/images/luxury_earring.png" alt=""></td>
+                        <td>Pearl Drop Earrings</td>
+                        <td>Earrings</td>
+                        <td>18K Gold</td>
+                        <td><button class="action-del" onclick="this.closest('tr').remove(); updateCount();">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/images/luxury_bracelet.png" alt=""></td>
+                        <td>Charm Chain Bracelet</td>
+                        <td>Bracelets</td>
+                        <td>22K Gold</td>
+                        <td><button class="action-del" onclick="this.closest('tr').remove(); updateCount();">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td><img src="assets/images/luxury_pendant.png" alt=""></td>
+                        <td>Radiance Pendant</td>
+                        <td>Necklaces</td>
+                        <td>Diamond & Gold</td>
+                        <td><button class="action-del" onclick="this.closest('tr').remove(); updateCount();">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function updateCount() {
+            document.getElementById('count').textContent = document.querySelectorAll('#productRows tr').length;
+        }
+
+        document.getElementById('saveProductBtn').addEventListener('click', () => {
+            const name = document.getElementById('pName').value.trim();
+            const cat = document.getElementById('pCat').value;
+            const mat = document.getElementById('pMaterial').value.trim();
+            const img = document.getElementById('pImg').value.trim() || 'assets/images/luxury_necklace.png';
+
+            if (!name || !mat) {
+                alert('Please enter product name and material details.');
+                return;
+            }
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><img src="${img}" alt=""></td>
+                <td>${name}</td>
+                <td>${cat}</td>
+                <td>${mat}</td>
+                <td><button class="action-del" onclick="this.closest('tr').remove(); updateCount();">Delete</button></td>
+            `;
+
+            document.getElementById('productRows').prepend(tr);
+            updateCount();
+
+            document.getElementById('pName').value = '';
+            document.getElementById('pMaterial').value = '';
+        });
+    </script>
+</body>
+</html>

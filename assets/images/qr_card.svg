@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <!-- Standalone High-Contrast Scannable SVG Container -->
+  <rect width="400" height="400" fill="#FFFFFF"/>
+  <image href="https://api.qrserver.com/v1/create-qr-code/?size=380x380&amp;margin=10&amp;data=BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3ALook%20Took%20Jewellers%0AORG%3ALook%20Took%20Jewellers%0ATITLE%3AGolden%20Gupta%0ATEL%3A%2B919424058434%0AADR%3A%3B%3BSarafa%20Bajar%3BGogawan%3BMadhya%20Pradesh%3B451335%3BIndia%0ANOTE%3ALook%20Took%20Jewellers%20-%20100%25%20BIS%20Hallmarked%20Gold%20%26%20Diamond%20Jewellery%0AURL%3Ahttps%3A%2F%2Fmaps.google.com%2F%3Fq%3DSarafa%2BBajar%2C%2BGogawan%2C%2BShahpura%2C%2BMadhya%2BPradesh%2B451335%0AEND%3AVCARD" x="10" y="10" width="380" height="380"/>
+</svg>
