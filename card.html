@@ -1,1 +1,427 @@
-<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=index.html#contact"></head><body></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Look Took Jewellers | Visiting Card</title>
+    <meta name="description" content="Luxury Visiting Card - Look Took Jewellers, Sarafa Bajar, Gogawan.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #FFF0BE;
+            --gold-dark: #9E7611;
+            --bg-body: #0a0908;
+            --card-black: #12100d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at center, #1b1712 0%, #080706 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            color: #FFFFFF;
+        }
+
+        /* -------------------------------------------
+           RECTANGULAR LUXURY BUSINESS CARD
+           Aspect ratio ~ 1.75 : 1 (Standard card)
+           ------------------------------------------- */
+        .card-stage {
+            perspective: 1200px;
+            width: 100%;
+            max-width: 580px;
+            margin-bottom: 24px;
+        }
+
+        .business-card {
+            position: relative;
+            width: 100%;
+            background: linear-gradient(135deg, #181511 0%, #0d0c0a 50%, #16130f 100%);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 32px 36px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 45px rgba(212, 175, 55, 0.25);
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* Subtle metallic sheen & border trim */
+        .business-card::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 14px;
+            pointer-events: none;
+        }
+
+        /* Corner Gold Studs */
+        .card-stud {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 6px var(--gold);
+        }
+        .stud-tl { top: 14px; left: 14px; }
+        .stud-tr { top: 14px; right: 14px; }
+        .stud-bl { bottom: 14px; left: 14px; }
+        .stud-br { bottom: 14px; right: 14px; }
+
+        /* Card Layout: Left Logo Crest + Right Info */
+        .card-body {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        /* Brand Emblem Medallion */
+        .card-crest-box {
+            flex-shrink: 0;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #0a0907;
+            border: 2px solid var(--gold);
+            padding: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 25px rgba(212,175,55,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-crest-box img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Card Details Right Column */
+        .card-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .card-brand-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.55rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #FFF8DC 0%, #D4AF37 50%, #E5C158 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.15;
+            margin-bottom: 4px;
+        }
+
+        .card-tagline {
+            font-size: 0.65rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .card-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold), rgba(212, 175, 55, 0.15));
+            margin-bottom: 12px;
+        }
+
+        .card-proprietor {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-proprietor span {
+            color: var(--gold-light);
+            font-size: 0.65rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 0.72rem;
+            line-height: 1.45;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 6px;
+        }
+
+        .card-detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-icon {
+            color: var(--gold);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .card-detail-item a {
+            color: var(--gold-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Bottom Card Badges */
+        .card-badge-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .mini-badge {
+            font-size: 0.58rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 12px;
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #FFEAA7;
+        }
+
+        /* -------------------------------------------
+           QUICK ACTION BUTTONS (MOBILE FRIENDLY)
+           ------------------------------------------- */
+        .actions-group {
+            width: 100%;
+            max-width: 580px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .action-tap-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .action-tap-btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-phone {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #0E0D0B;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: #FFFFFF;
+        }
+
+        .btn-maps {
+            background: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+        }
+
+        .save-btn {
+            width: 100%;
+            max-width: 580px;
+            padding: 12px;
+            border-radius: 12px;
+            background: transparent;
+            color: var(--gold-light);
+            border: 1.5px dashed rgba(212, 175, 55, 0.5);
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+
+        .save-btn:active {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .card-home-link {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .card-home-link:hover {
+            color: var(--gold);
+        }
+
+        /* Responsive for small phone screens */
+        @media (max-width: 520px) {
+            .business-card {
+                padding: 24px 20px;
+            }
+            .card-body {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+            .card-info {
+                text-align: center;
+            }
+            .card-crest-box {
+                width: 95px;
+                height: 95px;
+            }
+            .card-brand-name {
+                font-size: 1.35rem;
+            }
+            .card-proprietor {
+                justify-content: center;
+            }
+            .card-detail-item {
+                justify-content: center;
+                text-align: center;
+            }
+            .card-badge-row {
+                justify-content: center;
+            }
+            .actions-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Rectangular Luxury Business Card -->
+    <div class="card-stage">
+        <div class="business-card" id="businessCard">
+            <!-- Corner Studs -->
+            <div class="card-stud stud-tl"></div>
+            <div class="card-stud stud-tr"></div>
+            <div class="card-stud stud-bl"></div>
+            <div class="card-stud stud-br"></div>
+
+            <div class="card-body">
+                <!-- Royal Brand Crest -->
+                <div class="card-crest-box">
+                    <img src="assets/images/logo_crest.svg" alt="Look Took Jewellers Official Crest">
+                </div>
+
+                <!-- Visiting Card Content -->
+                <div class="card-info">
+                    <h1 class="card-brand-name">LOOK TOOK</h1>
+                    <div class="card-tagline">Jewellers • Gogawan</div>
+                    <div class="card-divider"></div>
+
+                    <div class="card-proprietor">
+                        Golden Gupta <span>(Master Jeweller & Founder)</span>
+                    </div>
+
+                    <div class="card-detail-item">
+                        <span class="card-icon">📍</span>
+                        <span>Sarafa Bajar, Gogawan, Shahpura [Gogaon], MP 451335</span>
+                    </div>
+
+                    <div class="card-detail-item">
+                        <span class="card-icon">📞</span>
+                        <a href="tel:+919424058434">+91 9424058434</a>
+                    </div>
+
+                    <div class="card-detail-item">
+                        <span class="card-icon">⏰</span>
+                        <span>Mon – Sat: 10:00 AM – 8:00 PM</span>
+                    </div>
+
+                    <div class="card-badge-row">
+                        <span class="mini-badge">👑 Estd. 2014</span>
+                        <span class="mini-badge">✨ 100% BIS Hallmarked</span>
+                        <span class="mini-badge">💎 22K Gold Purity</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1-Tap Quick Action Bar -->
+    <div class="actions-group">
+        <a href="tel:+919424058434" class="action-tap-btn btn-phone">
+            📞 Call Now
+        </a>
+        <a href="https://wa.me/919424058434?text=Hello%20Look%20Took%20Jewellers%2C%20I%20scanned%20your%20visiting%20card." target="_blank" rel="noopener" class="action-tap-btn btn-whatsapp">
+            💬 WhatsApp
+        </a>
+        <a href="https://maps.google.com/?q=Sarafa+Bajar,+Gogawan,+Shahpura,+Madhya+Pradesh+451335" target="_blank" rel="noopener" class="action-tap-btn btn-maps">
+            🗺️ Directions
+        </a>
+    </div>
+
+    <!-- Save vCard to Contacts -->
+    <button class="save-btn" onclick="saveContact()">
+        📥 Save Card to Contacts (.vcf)
+    </button>
+
+    <a href="index.html" class="card-home-link">← Visit Full Showroom Website</a>
+
+    <script>
+        function saveContact() {
+            const vcard = 
+`BEGIN:VCARD
+VERSION:3.0
+N:Gupta;Golden;;;
+FN:Look Took Jewellers (Golden Gupta)
+ORG:Look Took Jewellers
+TITLE:Master Jeweller & Founder
+TEL;TYPE=CELL,VOICE:+919424058434
+ADR;TYPE=WORK:;;Sarafa Bajar;Gogawan;Madhya Pradesh;451335;India
+NOTE:Look Took Jewellers - 100% BIS Hallmarked Gold & Diamond Jewellery since 2014.
+URL:https://maps.google.com/?q=Sarafa+Bajar,+Gogawan,+Shahpura,+Madhya+Pradesh+451335
+END:VCARD`;
+
+            const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute('download', 'Look_Took_Jewellers.vcf');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
