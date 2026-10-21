@@ -29,6 +29,12 @@
       <feGaussianBlur stdDeviation="4" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
+
+    <!-- Arc Paths: Both defined Clockwise (Sweep=1) so text is naturally oriented right-side up -->
+    <!-- Top Arc (starts at 9 o'clock goes over to 3 o'clock) -->
+    <path id="topArc" d="M 75 300 A 225 225 0 0 1 525 300" fill="none"/>
+    <!-- Bottom Upright Arc (starts at 8:30 o'clock goes under to 3:30 o'clock with radius 235, swept upwards so text sits upright) -->
+    <path id="bottomUprightArc" d="M 105 340 A 235 235 0 0 0 495 340" fill="none"/>
   </defs>
 
   <!-- Circular Outer Medallion -->
@@ -41,23 +47,16 @@
     <circle cx="300" cy="300" r="185" fill="none" stroke="url(#gold24k)" stroke-width="1" stroke-dasharray="2, 4" stroke-opacity="0.6"/>
   </g>
 
-  <!-- Curved Typography Path Top & Bottom -->
-  <defs>
-    <!-- Top Arc Path -->
-    <path id="topArc" d="M 75 300 A 225 225 0 0 1 525 300" fill="none"/>
-    <!-- Bottom Arc Path -->
-    <path id="bottomArc" d="M 525 300 A 225 225 0 0 1 75 300" fill="none"/>
-  </defs>
-
-  <!-- Arched Brand Typography -->
+  <!-- Arched Brand Typography - Top: LOOK TOOK JEWELLERS -->
   <text font-family="'Cinzel', 'Playfair Display', Georgia, serif" font-size="34" font-weight="700" letter-spacing="9" fill="url(#gold24k)" filter="url(#goldGlow)">
     <textPath href="#topArc" startOffset="50%" text-anchor="middle">
       LOOK TOOK JEWELLERS
     </textPath>
   </text>
 
-  <text font-family="'Montserrat', sans-serif" font-size="19" font-weight="600" letter-spacing="7" fill="#E8D48B" fill-opacity="0.95">
-    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">
+  <!-- Arched Brand Typography - Bottom: ESTD. 2014 • GOGAWAN (Now 100% Upright & Natural to Read) -->
+  <text font-family="'Montserrat', sans-serif" font-size="18.5" font-weight="600" letter-spacing="7" fill="#E8D48B" fill-opacity="0.95">
+    <textPath href="#bottomUprightArc" startOffset="50%" text-anchor="middle">
       ESTD. 2014 • GOGAWAN
     </textPath>
   </text>
