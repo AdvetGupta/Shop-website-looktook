@@ -1,7 +1,7 @@
 /**
  * verticalTabs.js (now navigationController.js)
  * Manages sticky top navbar scroll effects, mobile drawer toggle,
- * animated logo expansion modal, and smooth animated page scrolling.
+ * animated logo expansion modal, in-page visiting card modal, and smooth scrolling.
  */
 
 function initVerticalTabs() {
@@ -78,21 +78,49 @@ function initVerticalTabs() {
     if (logoModalClose) logoModalClose.addEventListener('click', closeLogoModal);
     if (logoModalBackdrop) logoModalBackdrop.addEventListener('click', closeLogoModal);
 
-    // Keyboard ESC key to close modal
+    // ============================================
+    // In-Page Visiting Card Modal (Blurred Background)
+    // ============================================
+    const visitingModal = document.getElementById('visitingCardModal');
+    const visitingBackdrop = document.getElementById('visitingCardBackdrop');
+    const visitingClose = document.getElementById('visitingCardClose');
+    const footerCardTrigger = document.getElementById('footerCardTrigger');
+    const footerQrTrigger = document.getElementById('footerQrTrigger');
+
+    const openVisitingCard = (e) => {
+        if (e) e.preventDefault();
+        if (!visitingModal) return;
+        visitingModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeVisitingCard = () => {
+        if (!visitingModal) return;
+        visitingModal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    if (footerCardTrigger) footerCardTrigger.addEventListener('click', openVisitingCard);
+    if (footerQrTrigger) footerQrTrigger.addEventListener('click', openVisitingCard);
+    if (visitingClose) visitingClose.addEventListener('click', closeVisitingCard);
+    if (visitingBackdrop) visitingBackdrop.addEventListener('click', closeVisitingCard);
+
+    // Keyboard ESC key to close any active modal
     window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && logoModal && logoModal.classList.contains('active')) {
-            closeLogoModal();
+        if (e.key === 'Escape') {
+            if (logoModal && logoModal.classList.contains('active')) closeLogoModal();
+            if (visitingModal && visitingModal.classList.contains('active')) closeVisitingCard();
         }
     });
 
     // ---- Smooth Scroll for All Anchor Links ----
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            // Ignore if it's the logo modal trigger
-            if (this.id === 'navLogoTrigger') return;
+            // Ignore if it's a modal trigger
+            if (this.id === 'navLogoTrigger' || this.id === 'footerCardTrigger') return;
 
             const href = this.getAttribute('href');
-            if (!href || href === '#') return;
+            if (!href || href === '#' || href === '#visiting-card') return;
             const targetId = href.substring(1);
             const targetElement = document.getElementById(targetId);
             if (targetElement) {

@@ -1084,3 +1084,277 @@
     display: block;
     object-fit: contain;
 }
+
+
+/* ============================================
+   VISITING CARD MODAL WITH BLURRED BACKDROP
+   ============================================ */
+.visiting-card-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 6000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.visiting-card-modal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.visiting-card-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(16, 14, 11, 0.88) 0%, rgba(5, 5, 4, 0.96) 100%);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.visiting-card-dialog {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+    width: 92%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scale(0.7) translateY(30px);
+    opacity: 0;
+    transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease;
+}
+
+.visiting-card-modal.active .visiting-card-dialog {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.visiting-card-close {
+    position: absolute;
+    top: -46px;
+    right: 0;
+    background: none;
+    border: none;
+    font-size: 2.4rem;
+    color: var(--gold);
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.visiting-card-close:hover {
+    transform: rotate(90deg) scale(1.15);
+    color: var(--gold-light);
+}
+
+/* Modal Rectangular Business Card */
+.modal-business-card {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(135deg, #181511 0%, #0d0c0a 50%, #16130f 100%);
+    border: 2px solid var(--gold);
+    border-radius: 22px;
+    padding: 30px 34px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 50px rgba(212, 175, 55, 0.3);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.modal-business-card::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 16px;
+    pointer-events: none;
+}
+
+.modal-card-stud {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--gold);
+}
+.mstud-tl { top: 14px; left: 14px; }
+.mstud-tr { top: 14px; right: 14px; }
+.mstud-bl { bottom: 14px; left: 14px; }
+.mstud-br { bottom: 14px; right: 14px; }
+
+.modal-card-body {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+.modal-crest-box {
+    flex-shrink: 0;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: #0a0907;
+    border: 2px solid var(--gold);
+    padding: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 175, 55, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-crest-box img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.modal-card-info {
+    flex: 1;
+}
+
+.modal-card-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #FFF8DC 0%, #D4AF37 50%, #E5C158 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.15;
+    margin-bottom: 2px;
+}
+
+.modal-card-tagline {
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.modal-card-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), rgba(212, 175, 55, 0.15));
+    margin-bottom: 10px;
+}
+
+.modal-card-proprietor {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 6px;
+}
+
+.modal-card-proprietor span {
+    color: var(--gold-light);
+    font-size: 0.62rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.modal-detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 5px;
+}
+
+.modal-detail-item a {
+    color: var(--gold-light);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.modal-badge-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.m-badge {
+    font-size: 0.58rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 12px;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #FFEAA7;
+}
+
+/* Modal Action Buttons Row */
+.modal-actions-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.m-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.m-action-btn:active {
+    transform: scale(0.96);
+}
+
+.m-btn-phone {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: #0E0D0B;
+}
+
+.m-btn-wa {
+    background: #25D366;
+    color: #FFFFFF;
+}
+
+.m-btn-map {
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+@media (max-width: 580px) {
+    .modal-business-card { padding: 22px 18px; }
+    .modal-card-body { flex-direction: column; text-align: center; gap: 14px; }
+    .modal-crest-box { width: 90px; height: 90px; }
+    .modal-card-name { font-size: 1.25rem; }
+    .modal-detail-item { justify-content: center; text-align: center; }
+    .modal-badge-row { justify-content: center; }
+    .modal-actions-row { grid-template-columns: 1fr; }
+    .visiting-card-close { top: -38px; right: 8px; }
+}
