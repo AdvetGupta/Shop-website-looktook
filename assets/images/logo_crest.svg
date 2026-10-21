@@ -30,11 +30,12 @@
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
 
-    <!-- Arc Paths: Both defined Clockwise (Sweep=1) so text is naturally oriented right-side up -->
-    <!-- Top Arc (starts at 9 o'clock goes over to 3 o'clock) -->
-    <path id="topArc" d="M 75 300 A 225 225 0 0 1 525 300" fill="none"/>
-    <!-- Bottom Upright Arc (starts at 8:30 o'clock goes under to 3:30 o'clock with radius 235, swept upwards so text sits upright) -->
-    <path id="bottomUprightArc" d="M 105 340 A 235 235 0 0 0 495 340" fill="none"/>
+    <!-- Perfectly Concentric Circular Arcs (Radius = 228px, Center = (300, 300)) -->
+    <!-- Top Arc: Starts at (-228, 0) relative to center, curves clockwise over top to (+228, 0) -->
+    <path id="topArc" d="M 72 300 A 228 228 0 0 1 528 300" fill="none"/>
+    
+    <!-- Bottom Upright Arc: Exactly concentric at radius 228px. Starts at (+228, 0), curves under from left-to-right from viewer's perspective -->
+    <path id="bottomArcCorrect" d="M 72 300 A 228 228 0 0 0 528 300" fill="none"/>
   </defs>
 
   <!-- Circular Outer Medallion -->
@@ -43,25 +44,26 @@
     <!-- Intricate beaded coin border -->
     <circle cx="300" cy="300" r="268" fill="none" stroke="url(#gold24k)" stroke-width="2.5" stroke-dasharray="3, 5" stroke-opacity="0.85"/>
     <circle cx="300" cy="300" r="258" fill="none" stroke="url(#gold24k)" stroke-width="1.5" stroke-opacity="0.5"/>
-    <circle cx="300" cy="300" r="192" fill="none" stroke="url(#gold24k)" stroke-width="2" stroke-opacity="0.7"/>
-    <circle cx="300" cy="300" r="185" fill="none" stroke="url(#gold24k)" stroke-width="1" stroke-dasharray="2, 4" stroke-opacity="0.6"/>
+    <!-- Concentric Typography Channel Ring -->
+    <circle cx="300" cy="300" r="198" fill="none" stroke="url(#gold24k)" stroke-width="2" stroke-opacity="0.75"/>
+    <circle cx="300" cy="300" r="190" fill="none" stroke="url(#gold24k)" stroke-width="1" stroke-dasharray="2, 4" stroke-opacity="0.5"/>
   </g>
 
   <!-- Arched Brand Typography - Top: LOOK TOOK JEWELLERS -->
-  <text font-family="'Cinzel', 'Playfair Display', Georgia, serif" font-size="34" font-weight="700" letter-spacing="9" fill="url(#gold24k)" filter="url(#goldGlow)">
+  <text font-family="'Cinzel', 'Playfair Display', Georgia, serif" font-size="33" font-weight="700" letter-spacing="8" fill="url(#gold24k)" filter="url(#goldGlow)">
     <textPath href="#topArc" startOffset="50%" text-anchor="middle">
       LOOK TOOK JEWELLERS
     </textPath>
   </text>
 
-  <!-- Arched Brand Typography - Bottom: ESTD. 2014 • GOGAWAN (Now 100% Upright & Natural to Read) -->
+  <!-- Arched Brand Typography - Bottom: ESTD. 2014 • GOGAWAN (Concentric, Balanced & Upright) -->
   <text font-family="'Montserrat', sans-serif" font-size="18.5" font-weight="600" letter-spacing="7" fill="#E8D48B" fill-opacity="0.95">
-    <textPath href="#bottomUprightArc" startOffset="50%" text-anchor="middle">
+    <textPath href="#bottomArcCorrect" startOffset="50%" text-anchor="middle">
       ESTD. 2014 • GOGAWAN
     </textPath>
   </text>
 
-  <!-- Diamond Star Separators -->
+  <!-- Diamond Star Separators at exact 9 o'clock & 3 o'clock -->
   <g transform="translate(68, 300) scale(0.9)" fill="url(#gold24k)">
     <polygon points="0,-10 3,-3 10,0 3,3 0,10 -3,3 -10,0 -3,-3"/>
   </g>
@@ -70,7 +72,7 @@
   </g>
 
   <!-- Inner Heritage Heraldic Shield -->
-  <g transform="translate(300, 315)">
+  <g transform="translate(300, 312)">
     <!-- Royal Shield Contour -->
     <path d="M 0 -105 C 55 -105 88 -85 95 -45 C 98 25 55 80 0 115 C -55 80 -98 25 -95 -45 C -88 -85 -55 -105 0 -105 Z"
           fill="url(#shieldGrad)" stroke="url(#gold24k)" stroke-width="3"/>
